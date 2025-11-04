@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Registro = () => {
     const [nombre, setNombre] = useState("");
@@ -52,7 +52,7 @@ export const Registro = () => {
                 <div className="row h-100 w-100">
                     <div className="col-12 col-md-5 col-lg-4 d-flex align-items-center h-100" style={{ minHeight: 400 }}>
                         <div className="p-4 rounded-4 shadow-lg w-100" style={{ background: "rgba(111,66,193,0.90)", border: "2px solid #fff", maxWidth: 400 }}>
-                            <h3 className="mb-4 text-warning text-center">Regístrate</h3>
+                            <h3 className="mb-4 text-warning text-center">¡Únete a la tripulación!</h3>
                             <form onSubmit={manejarEnvio}>
                                 <div className="mb-3">
                                     <input className="form-control" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
@@ -71,7 +71,7 @@ export const Registro = () => {
                                 <button className="btn btn-warning w-100" type="submit">Registrarse</button>
                             </form>
                             <div className="text-center mt-3">
-                                <a href="/iniciar-sesion" className="text-white">¿Ya tienes cuenta? Inicia sesión</a>
+                                <Link to="/iniciar-sesion" className="text-white">¿Ya tienes cuenta? Inicia sesión</Link>
                             </div>
                         </div>
                     </div>
