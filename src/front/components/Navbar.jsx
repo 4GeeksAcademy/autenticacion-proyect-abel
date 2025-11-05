@@ -7,8 +7,7 @@ export const Navbar = () => {
 					<img src="https://static.wikia.nocookie.net/onepiece/images/7/75/One_Piece_Logo.png/revision/latest?cb=20120706185846&path-prefix=es" alt="One Piece Logo" style={{ height: 28, width: "auto", marginLeft: 0, paddingLeft: 0 }} />
 				</span>
 				<div className="d-flex gap-1 ms-auto" style={{ marginRight: 0 }}>
-					<button className="btn btn-link text-white" style={{ textDecoration: "none", fontWeight: 500, padding: '0 6px' }} tabIndex={-1} type="button" onClick={e => e.preventDefault()}>Iniciar sesión</button>
-					<button className="btn btn-link text-white" style={{ textDecoration: "none", fontWeight: 500, padding: '0 6px' }} tabIndex={-1} type="button" onClick={e => e.preventDefault()}>Acerca de</button>
+					<button className="btn btn-link text-white" style={{ textDecoration: "none", fontWeight: 500, padding: '0 6px' }} tabIndex={-1} type="button" onClick={() => { sessionStorage.removeItem('token'); window.location.href = '/login'; }}>Cerrar sesión</button>
 				</div>
 			</div>
 		</nav>

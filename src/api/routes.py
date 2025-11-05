@@ -24,21 +24,20 @@ def handle_hello():
 @api.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json() or {}
-    username = data.get('username')
     nombre = data.get('nombre')
     apellidos = data.get('apellidos')
     email = data.get('email')
     password = data.get('password')
 
-    if not username or not nombre or not apellidos or not email or not password:
+    if not nombre or not apellidos or not email or not password:
         raise APIException(
-            'username, nombre, apellidos, email y password son requeridos', status_code=400)
+            'nombre, apellidos, email y password son requeridos', status_code=400)
 
-    if User.query.filter_by(email=email).first() or User.query.filter_by(username=username).first():
+    if User.query.filter_by(email=email).first():
         raise APIException('user already exists', status_code=400)
 
     user = User()
-    user.username = username
+    user.username = email
     user.nombre = nombre
     user.apellidos = apellidos
     user.email = email
