@@ -1,3 +1,4 @@
+from pathlib import Path
 import os
 from flask import Flask, jsonify, send_from_directory
 from flask_migrate import Migrate
@@ -8,8 +9,7 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
-static_file_dir = os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), '../dist/')
+static_file_dir = Path(__file__).resolve().parent.parent / 'dist'
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -48,7 +48,8 @@ def sitemap():
 
 @app.route('/<path:path>', methods=['GET'])
 def serve_any_other_file(path):
-    if not os.path.isfile(os.path.join(static_file_dir, path)):
+    file_path = static_file_dir / path
+    if not file_path.is_file():
         path = 'index.html'
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0

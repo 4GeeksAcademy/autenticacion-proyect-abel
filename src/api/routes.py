@@ -91,7 +91,7 @@ def private():
     user_id = payload.get('user_id')
     if not user_id:
         raise APIException('Token no válido', status_code=401)
-    user = User.query.get(int(user_id))
+    user = db.session.get(User, int(user_id))
     if not user:
         raise APIException('user not found', status_code=404)
 
@@ -113,7 +113,7 @@ def logout():
     if jti and not RevokedToken.query.filter_by(jti=jti).first():
         revoked = RevokedToken()
         revoked.jti = jti
-        revoked.created_at = datetime.utcnow()
+        revoked.created_at = datetime.now(datetime.UTC)
         db.session.add(revoked)
         db.session.commit()
 
