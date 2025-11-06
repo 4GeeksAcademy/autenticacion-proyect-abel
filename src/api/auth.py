@@ -11,7 +11,7 @@ ALGORITHM = "HS256"
 
 
 def create_token(user_id, email=None, minutes: int = 60):
-    now = datetime.utcnow()
+    now = datetime.now(datetime.UTC)
     payload = {
         "user_id": str(user_id),
         "email": email,
