@@ -34,7 +34,7 @@ def signup():
             'nombre, apellidos, email y password son requeridos', status_code=400)
 
     if User.query.filter_by(email=email).first():
-        raise APIException('user already exists', status_code=400)
+        raise APIException('El usuario ya existe', status_code=400)
 
     user = User()
     user.username = email
@@ -56,11 +56,12 @@ def token():
     password = data.get('password')
 
     if not email or not password:
-        raise APIException('email and password are required', status_code=400)
+        raise APIException(
+            'Correo y contraseña son requeridos', status_code=400)
 
     user = User.query.filter_by(email=email).first()
     if not user or not check_password_hash(user.password, password):
-        raise APIException('invalid credentials', status_code=401)
+        raise APIException('Verifica email o contraseña', status_code=401)
 
     token = create_token(user.id, email=user.email)
     return jsonify({'token': token}), 200
@@ -87,8 +88,10 @@ def private():
     if jti and RevokedToken.query.filter_by(jti=jti).first():
         raise APIException('token revoked', status_code=401)
 
-    user_id = payload.get('sub')
-    user = User.query.get(user_id)
+    user_id = payload.get('user_id')
+    if not user_id:
+        raise APIException('Token no válido', status_code=401)
+    user = User.query.get(int(user_id))
     if not user:
         raise APIException('user not found', status_code=404)
 

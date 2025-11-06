@@ -13,13 +13,15 @@ ALGORITHM = "HS256"
 def create_token(user_id, email=None, minutes: int = 60):
     now = datetime.utcnow()
     payload = {
-        "sub": user_id,
+        "user_id": str(user_id),
         "email": email,
-        "iat": now,
-        "exp": now + timedelta(minutes=minutes),
+        "iat": int(now.timestamp()),
+        "exp": int((now + timedelta(minutes=minutes)).timestamp()),
         "jti": str(uuid4()),
     }
     token = jwt.encode(payload, SECRET, algorithm=ALGORITHM)
+    if isinstance(token, bytes):
+        token = token.decode('utf-8')
     return token
 
 
