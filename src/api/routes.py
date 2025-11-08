@@ -111,9 +111,10 @@ def logout():
 
     jti = payload.get('jti')
     if jti and not RevokedToken.query.filter_by(jti=jti).first():
+        from datetime import timezone
         revoked = RevokedToken()
         revoked.jti = jti
-        revoked.created_at = datetime.now(datetime.UTC)
+        revoked.created_at = datetime.now(timezone.utc)
         db.session.add(revoked)
         db.session.commit()
 

@@ -1,0 +1,81 @@
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Serving Flask app 'src/app.py'
+ * Debug mode: off
+Address already in use
+Port 3001 is in use by another program. Either identify and stop that program, or start the server with a different port.
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Serving Flask app 'src/app.py'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3001
+ * Running on http://172.18.0.2:3001
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [08/Nov/2025 09:07:15] "[31m[1mPOST /api/token HTTP/1.1[0m" 401 -
+127.0.0.1 - - [08/Nov/2025 09:07:36] "[31m[1mPOST /api/token HTTP/1.1[0m" 401 -
+127.0.0.1 - - [08/Nov/2025 09:07:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:07:40] "[36mGET /assets/index-7cd97b05.js HTTP/1.1[0m" 304 -
+127.0.0.1 - - [08/Nov/2025 09:07:40] "[36mGET /assets/index-2e9e5534.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [08/Nov/2025 09:07:41] "[35m[1mPOST /api/signup HTTP/1.1[0m" 201 -
+[2025-11-08 09:07:47,008] ERROR in app: Exception on /api/token [POST]
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/workspaces/autenticacion-proyect-abel/src/api/routes.py", line 66, in token
+    token = create_token(user.id, email=user.email)
+  File "/workspaces/autenticacion-proyect-abel/src/api/auth.py", line 14, in create_token
+    now = datetime.now(datetime.UTC)
+                       ^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'UTC'
+127.0.0.1 - - [08/Nov/2025 09:07:47] "[35m[1mPOST /api/token HTTP/1.1[0m" 500 -
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Serving Flask app 'src/app.py'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3001
+ * Running on http://172.18.0.2:3001
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [08/Nov/2025 09:08:52] "[31m[1mPOST /api/token HTTP/1.1[0m" 401 -
+127.0.0.1 - - [08/Nov/2025 09:09:15] "[35m[1mPOST /api/signup HTTP/1.1[0m" 201 -
+127.0.0.1 - - [08/Nov/2025 09:09:28] "POST /api/token HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:09:53] "GET /api/private HTTP/1.1" 200 -
+[2025-11-08 09:10:09,643] ERROR in app: Exception on /api/logout [POST]
+Traceback (most recent call last):
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/vscode/.local/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/workspaces/autenticacion-proyect-abel/src/api/routes.py", line 116, in logout
+    revoked.created_at = datetime.now(datetime.UTC)
+                                      ^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'UTC'
+127.0.0.1 - - [08/Nov/2025 09:10:09] "[35m[1mPOST /api/logout HTTP/1.1[0m" 500 -
+ * Tip: There are .env files present. Install python-dotenv to use them.
+ * Serving Flask app 'src/app.py'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3001
+ * Running on http://172.18.0.2:3001
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [08/Nov/2025 09:10:58] "POST /api/logout HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:12:17] "[35m[1mPOST /api/signup HTTP/1.1[0m" 201 -
+127.0.0.1 - - [08/Nov/2025 09:12:17] "POST /api/token HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:12:17] "POST /api/token HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:12:17] "GET /api/private HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:12:18] "POST /api/token HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:12:18] "POST /api/logout HTTP/1.1" 200 -
+127.0.0.1 - - [08/Nov/2025 09:12:18] "[31m[1mGET /api/private HTTP/1.1[0m" 401 -

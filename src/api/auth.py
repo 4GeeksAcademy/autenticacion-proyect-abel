@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from uuid import uuid4
 
 import jwt
@@ -11,7 +11,7 @@ ALGORITHM = "HS256"
 
 
 def create_token(user_id, email=None, minutes: int = 60):
-    now = datetime.now(datetime.UTC)
+    now = datetime.now(timezone.utc)
     payload = {
         "user_id": str(user_id),
         "email": email,
